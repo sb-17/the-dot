@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FirebaseINIT.unity
+    guid: b670455953649074e85789f8853d6e66
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MenuOffline.unity
+    guid: 0b751910d12b8744bba0565cda506090
+  - enabled: 1
+    path: Assets/Scenes/SPGame.unity
+    guid: a063b660e90d1f044ba34c4c391518db
+  - enabled: 1
+    path: Assets/Scenes/MPChoose.unity
+    guid: fe5299a8762234a4685da3c4e19bf8a8
+  - enabled: 1
+    path: Assets/Scenes/MPGameOD.unity
+    guid: 8f3be4f3f125ec4439a78d332412aedb
+  - enabled: 1
+    path: Assets/Scenes/Help.unity
+    guid: 240d6075ce7476c4393cc91e6e379074
+  - enabled: 1
+    path: Assets/Scenes/EndSP.unity
+    guid: b7989e2a748358842a920ba3f90f275d
+  - enabled: 1
+    path: Assets/Scenes/Tournaments.unity
+    guid: ea1491d38a91b3c4bbd1e4d04f14630d
+  - enabled: 1
+    path: Assets/Scenes/MPPrivateSetup.unity
+    guid: 794033080f556274ab0154beccfa21c1
+  - enabled: 1
+    path: Assets/Scenes/MPGameMD.unity
+    guid: 7e7b2d5316e22b248b582ec06df084de
+  - enabled: 1
+    path: Assets/Scenes/EndMPOD.unity
+    guid: 747c2e99094c497449c98012b3b1bd29
+  - enabled: 1
+    path: Assets/Scenes/EndMPMD.unity
+    guid: e7a23c472a2d74a4a91f4c4f687dd9db
+  m_configObjects: {}
