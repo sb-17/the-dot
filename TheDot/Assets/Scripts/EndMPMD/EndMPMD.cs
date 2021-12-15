@@ -57,13 +57,11 @@ public class EndMPMD : MonoBehaviourPunCallbacks
 
     public void PlayAgain()
     {
-        BannerAd.HideBanner();
         SceneManager.LoadScene("MPChoose");
     }
 
     public void Back()
     {
-        BannerAd.HideBanner();
         SceneManager.LoadScene("Menu");
     }
 }

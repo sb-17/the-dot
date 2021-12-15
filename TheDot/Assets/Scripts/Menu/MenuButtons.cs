@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Pun;
-using Photon.Realtime;
 using System.Collections;
 
 public class MenuButtons : MonoBehaviour
@@ -16,18 +15,9 @@ public class MenuButtons : MonoBehaviour
 
     public TMP_InputField nick;
 
-    public GameObject RewardAdButton;
-
     void Start()
     {
         StartCoroutine(AuthManager.CheckXP());
-
-        int random = Random.Range(1, 3);
-
-        if(random == 1)
-        {
-            RewardAdButton.SetActive(true);
-        }
     }
 
     public void Play()

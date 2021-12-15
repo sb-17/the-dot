@@ -35,14 +35,11 @@ public class EndSP : MonoBehaviour
 
     public void PlayAgain()
     {
-        BannerAd.HideBanner();
         SceneManager.LoadScene("SPGame");
     }
 
     public void Back()
     {
-        BannerAd.HideBanner();
-
         if (PlayerPrefs.GetInt("offline") != 1)
             SceneManager.LoadScene("Menu");
         else

@@ -38,12 +38,15 @@ public class AuthManager : MonoBehaviour
     public Text rating;
     public Text xp;
     public Text level;
+    public Text coins;
     public static Text rating1;
     public static Text xp1;
     public static Text level1;
+    public static Text coins1;
     public GameObject menuPanel;
 
     public static int xpNow = -1;
+    public static int coinsNow = -1;
     public static int levelNow = -1;
     public static int ratingNow = -1;
 
@@ -75,6 +78,7 @@ public class AuthManager : MonoBehaviour
         rating1 = rating;
         xp1 = xp;
         level1 = level;
+        coins1 = coins;
     }
 
     private void FixedUpdate()
@@ -94,6 +98,8 @@ public class AuthManager : MonoBehaviour
             loginPanel.SetActive(false);
 
             StartCoroutine(LoadUserData());
+
+            StartCoroutine(CheckVersion());
         }
     }
    
@@ -255,6 +261,7 @@ public class AuthManager : MonoBehaviour
                         StartCoroutine(UpdateXP(0));
                         StartCoroutine(UpdateLevel(1));
                         StartCoroutine(UpdateID(User.UserId, User.DisplayName));
+                        StartCoroutine(UpdateCoins(100));
 
                         StartCoroutine(LoadUserData());
 
@@ -337,6 +344,21 @@ public class AuthManager : MonoBehaviour
             instance.StartCoroutine(LoadUserData());
     }
 
+    public static IEnumerator UpdateCoins(int _coins)
+    {
+        var DBTask = DBReference.Child("users").Child(User.UserId).Child("coins").SetValueAsync(_coins);
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Menu")
+            instance.StartCoroutine(LoadUserData());
+    }
+
     public static IEnumerator UpdateLevel(int _level)
     {
         var DBTask = DBReference.Child("users").Child(User.UserId).Child("level").SetValueAsync(_level);
@@ -373,8 +395,30 @@ public class AuthManager : MonoBehaviour
             rating1.text = "Rating: " + snapshot.Child("rating").Value.ToString();
             level1.text = "Level: " + snapshot.Child("level").Value.ToString();
             xp1.text = "XP: " + snapshot.Child("xp").Value.ToString();
+            coins1.text = "TheDotCoins: " + snapshot.Child("coins").Value.ToString();
 
             PlayerPrefs.SetInt("Level", int.Parse(snapshot.Child("level").Value.ToString()));
+        }
+    }
+
+    public static IEnumerator CheckVersion()
+    {
+        var DBTask = DBReference.Child("version").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else if (DBTask.Result.Value != null)
+        {
+            DataSnapshot snapshot = DBTask.Result;
+
+            if (snapshot.Value.ToString() != Application.version)
+            {
+                SceneManager.LoadScene("UpdateApp");
+            }
         }
     }
 
@@ -420,7 +464,7 @@ public class AuthManager : MonoBehaviour
                 int i = Mathf.FloorToInt(xpNow / 80);
 
                 instance.StartCoroutine(UpdateLevel(levelNow + i));
-                instance.StartCoroutine(UpdateXP(xpNow - 80*i));
+                instance.StartCoroutine(UpdateXP(xpNow - 80 * i));
             }
             else if (xpNow <= -1)
             {
@@ -449,8 +493,17 @@ public class AuthManager : MonoBehaviour
             DataSnapshot snapshot = DBTask.Result;
 
             xpNow = int.Parse(snapshot.Child("xp").Value.ToString());
+            levelNow = int.Parse(snapshot.Child("level").Value.ToString());
 
-            instance.StartCoroutine(UpdateXP(xpNow + random));
+            if (xpNow + random >= 80)
+            {
+                instance.StartCoroutine(UpdateXP(xpNow + random - 80));
+                instance.StartCoroutine(UpdateLevel(levelNow + 1));
+            }
+            else
+            {
+                instance.StartCoroutine(UpdateXP(xpNow + random));
+            }
         }
     }
 
@@ -481,6 +534,47 @@ public class AuthManager : MonoBehaviour
             {
                 instance.StartCoroutine(UpdateXP(xpNow - random));
             }
+
+        }
+    }
+
+    public static IEnumerator AddCoins(int coinsToAdd)
+    {
+        var DBTask = DBReference.Child("users").Child(User.UserId).GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else if (DBTask.Result.Value != null)
+        {
+            DataSnapshot snapshot = DBTask.Result;
+
+            coinsNow = int.Parse(snapshot.Child("coins").Value.ToString());
+
+            instance.StartCoroutine(UpdateCoins(coinsNow + coinsToAdd));
+        }
+    }
+
+    public static IEnumerator SubstractCoins(int coinsToSubtract)
+    {
+        var DBTask = DBReference.Child("users").Child(User.UserId).GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else if (DBTask.Result.Value != null)
+        {
+            DataSnapshot snapshot = DBTask.Result;
+
+            coinsNow = int.Parse(snapshot.Child("coins").Value.ToString());
+
+            instance.StartCoroutine(UpdateCoins(coinsNow - coinsToSubtract));
 
         }
     }

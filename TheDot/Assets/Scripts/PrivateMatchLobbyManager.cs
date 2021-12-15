@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
@@ -25,8 +26,6 @@ public class PrivateMatchLobbyManager : MonoBehaviourPunCallbacks
     TMP_InputField nameInput;
     [SerializeField]
     TMP_InputField nameInput1;
-
-    TypedLobby privateLobby = new TypedLobby("privateLobby", LobbyType.SqlLobby);
 
     void Start()
     {
@@ -63,7 +62,7 @@ public class PrivateMatchLobbyManager : MonoBehaviourPunCallbacks
         RoomOptions roomOptions =
         new RoomOptions()
         {
-            IsVisible = true,
+            IsVisible = false,
             IsOpen = true,
             MaxPlayers = 2
         };
@@ -75,7 +74,7 @@ public class PrivateMatchLobbyManager : MonoBehaviourPunCallbacks
         RoomCustomProps.Add("clicked", null);
         roomOptions.CustomRoomProperties = RoomCustomProps;
 
-        PhotonNetwork.CreateRoom(nameInput.text, roomOptions, privateLobby);
+        PhotonNetwork.CreateRoom(nameInput.text, roomOptions);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -101,5 +100,11 @@ public class PrivateMatchLobbyManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.JoinRoom(nameInput1.text);
         }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MPChoose");
+        PhotonNetwork.Disconnect();
     }
 }

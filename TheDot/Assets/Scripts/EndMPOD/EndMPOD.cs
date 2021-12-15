@@ -29,13 +29,11 @@ public class EndMPOD : MonoBehaviour
 
     public void PlayAgain()
     {
-        BannerAd.HideBanner();
         SceneManager.LoadScene("MPGameOD");
     }
 
     public void Back()
     {
-        BannerAd.HideBanner();
         SceneManager.LoadScene("Menu");
     }
 }

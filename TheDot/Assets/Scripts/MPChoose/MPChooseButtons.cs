@@ -20,6 +20,7 @@ public class MPChooseButtons : MonoBehaviourPunCallbacks
 
     public void MPPrivate()
     {
+        PhotonNetwork.Disconnect();
         SceneManager.LoadScene("MPPrivateSetup");
     }
 }

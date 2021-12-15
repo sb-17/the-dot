@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Firebase.Auth;
 using Firebase.Extensions;
+using UnityEngine.Networking;
 
 public class FirebaseINIT : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class FirebaseINIT : MonoBehaviour
             Firebase.DependencyStatus dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
-
                 Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
                 PlayerPrefs.SetInt("offline", 0);
                 SceneManager.LoadScene("Menu");
