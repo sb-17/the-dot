@@ -342,6 +342,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+--- !u!114 &199373748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+  m_PrefabInstance: {fileID: 199373747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563b96ee2b8389749a82ad4f0d671133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &657868431
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +645,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 199373748}
+        m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+        m_MethodName: DestroyBannerAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &941342003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +860,18 @@ MonoBehaviour:
       - m_Target: {fileID: 737794459}
         m_TargetAssemblyTypeName: EndMPOD, Assembly-CSharp
         m_MethodName: PlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 199373748}
+        m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+        m_MethodName: DestroyBannerAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

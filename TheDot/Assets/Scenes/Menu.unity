@@ -584,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0032958984, y: -17.090027}
+  m_AnchoredPosition: {x: -0.0032958984, y: -17.090088}
   m_SizeDelta: {x: 133.2567, y: 93.44299}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &42335324
@@ -1604,6 +1604,106 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268229552}
   m_CullTransparentMesh: 1
+--- !u!1001 &283839956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306737596873677487, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 449715990}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdRewardFunction
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AuthManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: AdReward()
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284326756729531401, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+      propertyPath: m_Name
+      value: GoogleAdMobController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+--- !u!114 &283839957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2328513516641600083, guid: b089331cdbac5a945a6413a16c4aec66, type: 3}
+  m_PrefabInstance: {fileID: 283839956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563b96ee2b8389749a82ad4f0d671133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &321367967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2694,115 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &571712093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 571712094}
+  - component: {fileID: 571712096}
+  - component: {fileID: 571712095}
+  - component: {fileID: 571712097}
+  m_Layer: 5
+  m_Name: RewardedAd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &571712094
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571712093}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1495224642}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -27.090088, y: 33.16284}
+  m_SizeDelta: {x: 350.06006, y: 62.294098}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &571712095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571712093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: ad = 20xp
+--- !u!222 &571712096
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571712093}
+  m_CullTransparentMesh: 1
+--- !u!114 &571712097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571712093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 283839957}
+          m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+          m_MethodName: ShowRewardedAd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &624127829
 GameObject:
   m_ObjectHideFlags: 0
@@ -7111,6 +7320,7 @@ RectTransform:
   - {fileID: 42335323}
   - {fileID: 1279821807}
   - {fileID: 1291862346}
+  - {fileID: 571712094}
   m_Father: {fileID: 683559133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7135,8 +7345,8 @@ MonoBehaviour:
   pLevel: {fileID: 637079702}
   xp: {fileID: 2064218681}
   rating: {fileID: 1732646075}
+  rewardAdText: {fileID: 571712095}
   nick: {fileID: 0}
-  RewardAdButton: {fileID: 0}
 --- !u!1 &1603935740
 GameObject:
   m_ObjectHideFlags: 0

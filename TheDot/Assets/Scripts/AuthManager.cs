@@ -422,6 +422,11 @@ public class AuthManager : MonoBehaviour
         }
     }
 
+    public void AdRewardFunction()
+    {
+        StartCoroutine(AdReward());
+    }
+
     public static IEnumerator AdReward()
     {
         var DBTask = DBReference.Child("users").Child(User.UserId).GetValueAsync();
@@ -436,9 +441,9 @@ public class AuthManager : MonoBehaviour
         {
             DataSnapshot snapshot = DBTask.Result;
 
-            levelNow = int.Parse(snapshot.Child("level").Value.ToString());
+            xpNow = int.Parse(snapshot.Child("xp").Value.ToString());
 
-            instance.StartCoroutine(UpdateLevel(levelNow + 1));
+            instance.StartCoroutine(UpdateXP(xpNow + 20));
         }
     }
 

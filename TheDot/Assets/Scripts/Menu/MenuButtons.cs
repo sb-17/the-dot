@@ -13,11 +13,30 @@ public class MenuButtons : MonoBehaviour
     public Text xp;
     public Text rating;
 
+    public Text rewardAdText;
+
     public TMP_InputField nick;
 
     void Start()
     {
         StartCoroutine(AuthManager.CheckXP());
+
+        if (Application.isMobilePlatform)
+        {
+            int random = Random.Range(1, 3);
+            if (random == 1)
+            {
+                GoogleAdMobController gamc = GameObject.Find("GoogleAdMobController").GetComponent<GoogleAdMobController>();
+
+                gamc.RequestAndLoadRewardedAd();
+
+                rewardAdText.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            rewardAdText.gameObject.SetActive(false);
+        }
     }
 
     public void Play()
