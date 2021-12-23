@@ -7,14 +7,18 @@ using Photon.Realtime;
 
 public class FieldClickMPMD : MonoBehaviourPun
 {
+    MDMPGame game;
+
     public Sprite dot;
     public RectTransform rt;
-    public static List<int> placed = new List<int>();
+    public List<int> placed = new List<int>();
 
     public static bool canDoClick;
 
     void Start()
     {
+        game = GameObject.Find("board").GetComponent<MDMPGame>();
+
         canDoClick = true;
     }
 
@@ -27,7 +31,7 @@ public class FieldClickMPMD : MonoBehaviourPun
             {
                 gameObject.GetComponent<Image>().sprite = dot;
 
-                MDMPGame.player1DotCountText.text = PhotonNetwork.PlayerList[0].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P1Dots"].ToString();
+                game.player1DotCountText.text = PhotonNetwork.PlayerList[0].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P1Dots"].ToString();
 
                 placed.Add(CheckMyPos());
 
@@ -47,7 +51,7 @@ public class FieldClickMPMD : MonoBehaviourPun
             {
                 gameObject.GetComponent<Image>().sprite = dot;
 
-                MDMPGame.player2DotCountText.text = PhotonNetwork.PlayerList[1].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P2Dots"].ToString();
+                game.player2DotCountText.text = PhotonNetwork.PlayerList[1].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P2Dots"].ToString();
 
                 placed.Add(CheckMyPos());
 
@@ -64,6 +68,6 @@ public class FieldClickMPMD : MonoBehaviourPun
 
     int CheckMyPos()
     {
-        return MDMPGame.fields.IndexOf(gameObject.GetComponent<Image>()) + 1;
+        return game.fields.IndexOf(gameObject.GetComponent<Image>()) + 1;
     }
 }

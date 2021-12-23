@@ -977,6 +977,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 2327855047375839562}
   mainCam: {fileID: 757734397}
+  board10x10: {fileID: 0}
+  board9x9: {fileID: 0}
+  board8x8: {fileID: 0}
+  board7x7: {fileID: 0}
+  board6x6: {fileID: 0}
+  board5x5: {fileID: 0}
+  board4x4: {fileID: 0}
+  board3x3: {fileID: 0}
+  board2x2: {fileID: 0}
 --- !u!1 &2327855047375839562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1077,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3286163911610860551, guid: dcb2afa0cf7848b428db761a18fe8121, type: 3}
+  m_Sprite: {fileID: 3286163911610860551, guid: a2e3f608955eeab4b8e521c97bc1ae79, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

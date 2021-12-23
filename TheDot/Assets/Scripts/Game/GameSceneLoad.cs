@@ -1,14 +1,74 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameSceneLoad : MonoBehaviour
+public class GameSceneLoad : MonoBehaviourPunCallbacks
 {
     public GameObject bg;
 
     public Camera mainCam;
 
+    public Sprite board10x10;
+    public Sprite board9x9;
+    public Sprite board8x8;
+    public Sprite board7x7;
+    public Sprite board6x6;
+    public Sprite board5x5;
+    public Sprite board4x4;
+    public Sprite board3x3;
+    public Sprite board2x2;
+
     void Start()
     {
+        SetBoard();
         scaleBackgroundImageFitScreenSize();
+    }
+
+    private void SetBoard()
+    {
+        if (SceneManager.GetActiveScene().name == "MPGameOD")
+        {
+            if (PlayerPrefs.GetInt("GridSize") == 10)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board10x10;
+            else if (PlayerPrefs.GetInt("GridSize") == 9)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board9x9;
+            else if (PlayerPrefs.GetInt("GridSize") == 8)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board8x8;
+            else if (PlayerPrefs.GetInt("GridSize") == 7)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board7x7;
+            else if (PlayerPrefs.GetInt("GridSize") == 6)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board6x6;
+            else if (PlayerPrefs.GetInt("GridSize") == 5)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board5x5;
+            else if (PlayerPrefs.GetInt("GridSize") == 4)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board4x4;
+            else if (PlayerPrefs.GetInt("GridSize") == 3)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board3x3;
+            else if (PlayerPrefs.GetInt("GridSize") == 2)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board2x2;
+        }
+        else if (SceneManager.GetActiveScene().name == "MPGameMD")
+        {
+            if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 10)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board10x10;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 9)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board9x9;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 8)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board8x8;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 7)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board7x7;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 6)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board6x6;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 5)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board5x5;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 4)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board4x4;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 3)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board3x3;
+            else if ((int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"] == 2)
+                GameObject.Find("board").GetComponent<SpriteRenderer>().sprite = board2x2;
+        }
     }
 
     private void scaleBackgroundImageFitScreenSize()

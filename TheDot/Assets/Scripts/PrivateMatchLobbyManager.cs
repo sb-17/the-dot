@@ -67,10 +67,13 @@ public class PrivateMatchLobbyManager : MonoBehaviourPunCallbacks
             MaxPlayers = 2
         };
 
+        int gridSize = PlayerPrefs.GetInt("GridSize");
+
         Hashtable RoomCustomProps = new Hashtable();
-        RoomCustomProps.Add("P1Dots", 25);
-        RoomCustomProps.Add("P2Dots", 25);
+        RoomCustomProps.Add("P1Dots", Mathf.RoundToInt(gridSize * gridSize / 4));
+        RoomCustomProps.Add("P2Dots", Mathf.RoundToInt(gridSize * gridSize / 4));
         RoomCustomProps.Add("turn", 1);
+        RoomCustomProps.Add("GridSize", gridSize);
         RoomCustomProps.Add("clicked", null);
         roomOptions.CustomRoomProperties = RoomCustomProps;
 

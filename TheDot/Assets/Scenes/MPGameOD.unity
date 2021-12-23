@@ -394,6 +394,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 986529616}
   mainCam: {fileID: 1796596828}
+  board10x10: {fileID: 3286163911610860551, guid: a2e3f608955eeab4b8e521c97bc1ae79, type: 3}
+  board9x9: {fileID: 3286163911610860551, guid: 7a365250c4978fb4b9f1f733e7fef445, type: 3}
+  board8x8: {fileID: 3286163911610860551, guid: e9327a26a223a3d4c8b7e05d612145d5, type: 3}
+  board7x7: {fileID: 3286163911610860551, guid: c7373464f2ce5e744abccc341a49e6b7, type: 3}
+  board6x6: {fileID: 3286163911610860551, guid: 2163bca8ad3fce74ea3eb82d468a7182, type: 3}
+  board5x5: {fileID: 3286163911610860551, guid: 8f799ffd2bc2057419b9807b15cb7851, type: 3}
+  board4x4: {fileID: 3286163911610860551, guid: 1c3d5a32747569840b28e8a169dbbc85, type: 3}
+  board3x3: {fileID: 3286163911610860551, guid: fae6ef4188d1fb3489b7aa8c02a81ec7, type: 3}
+  board2x2: {fileID: 3286163911610860551, guid: 2db5f0822724434428182fa0f0122fe5, type: 3}
 --- !u!1 &709732267
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,8 +582,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986529617}
-  - component: {fileID: 986529619}
   - component: {fileID: 986529618}
+  - component: {fileID: 986529619}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -591,7 +600,7 @@ Transform:
   m_GameObject: {fileID: 986529616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 633849555}
   m_RootOrder: 0
@@ -608,13 +617,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92209065c5f7b424494bc520e316f3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dot1: {fileID: 21300000, guid: 5c4777a87404350449251c23394f4cda, type: 3}
-  red1: {fileID: 21300000, guid: 42d7ab32d2861da48aee7d57cc68c6ba, type: 3}
-  turnText1: {fileID: 1580411241}
-  player1DotCountText1: {fileID: 1249612791}
-  player2DotCountText1: {fileID: 1029878840}
-  field: {fileID: 7839098685213545454, guid: 107df1a801608b747b77cafc6620ca03, type: 3}
+  player1DotCountText: {fileID: 1249612791}
+  player2DotCountText: {fileID: 1029878840}
+  dot: {fileID: 21300000, guid: 5c4777a87404350449251c23394f4cda, type: 3}
+  red: {fileID: 21300000, guid: 42d7ab32d2861da48aee7d57cc68c6ba, type: 3}
+  turnText: {fileID: 1580411241}
+  fieldObject: {fileID: 7839098685213545454, guid: 107df1a801608b747b77cafc6620ca03, type: 3}
   board: {fileID: 986529617}
+  fields: []
+  sq: 
+  turn: 0
+  x: 0
+  y: 0
 --- !u!212 &986529619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -634,7 +648,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73ddb2958e9cd451c82f37c26efa5eb0, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -655,15 +669,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3286163911610860551, guid: dcb2afa0cf7848b428db761a18fe8121, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.61, y: 0.61}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1029878838

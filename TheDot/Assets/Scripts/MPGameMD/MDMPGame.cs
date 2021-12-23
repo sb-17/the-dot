@@ -8,45 +8,34 @@ using Photon.Realtime;
 
 public class MDMPGame : MonoBehaviourPunCallbacks
 {
-    static public MDMPGame instance;
+    public Text player1DotCountText;
+    public Text player2DotCountText;
 
-    public Sprite dot1;
-    public Sprite red1;
-    public Text turnText1;
+    public Sprite dot;
+    public Sprite red;
 
-    public Text player1DotCountText1;
-    public Text player2DotCountText1;
-
-    public static Text player1DotCountText;
-    public static Text player2DotCountText;
-
-    public static Sprite dot;
-    public static Sprite red;
-
-    public static Text turnText;
+    public Text turnText;
 
     public GameObject field;
     public Transform board;
 
-    public static List<Image> fields = new List<Image>();
+    public List<Image> fields = new List<Image>();
 
-    public static List<List<int>> squares = new List<List<int>>();
+    public List<List<int>> squares = new List<List<int>>();
 
-    public static List<int> sq = new List<int>();
+    public List<int> sq = new List<int>();
 
-    public static int x = 10;
-    public static int y = 10;
+    public float x;
+    public float y;
 
-    static float time = 0;
+    float time = 0;
 
-    static bool gameStop = false;
+    bool gameStop = false;
 
-    public static int[,] grid = new int[x, y];
+    public int[,] grid;
 
     private void Awake()
     {
-        instance = this;
-        
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -109,62 +98,36 @@ public class MDMPGame : MonoBehaviourPunCallbacks
     }
 
     void InstantiateFields() {
-        float x = -0.27f;
-        float y = 0.27f;
+        float space = 0.06f;
 
-        for (int i = 0; i < 100; i++)
+        float posX = -0.27f + 0.03f * (10 - x);
+        float posY = 0.27f - 0.03f * (10 - y);
+
+        float posX1 = posX;
+        float posY1 = posY;
+
+        for (float row = 0; row < x; row++)
         {
-            GameObject obj = PhotonNetwork.Instantiate("field", new Vector3(0, 0, 0), Quaternion.identity, 0);
-            obj.transform.SetParent(board.transform);
-            obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+            for (float col = 0; col < y; col++)
+            {
+                GameObject field = new GameObject();
+                Destroy(field);
 
-            fields.Add(obj.GetComponent<Image>());
+                field = PhotonNetwork.Instantiate("field", new Vector3(0, 0, 0), Quaternion.identity, 0);
+                field.transform.SetParent(board.transform);
 
-            if (x == -0.27f)
-            {
-                x = -0.21f;
-            }
-            else if (x == -0.21f)
-            {
-                x = -0.15f;
-            }
-            else if (x == -0.15f)
-            {
-                x = -0.09f;
-            }
-            else if (x == -0.09f)
-            {
-                x = -0.03f;
-            }
-            else if (x == -0.03f)
-            {
-                x = 0.03f;
-            }
-            else if (x == 0.03f)
-            {
-                x = 0.09f;
-            }
-            else if (x == 0.09f)
-            {
-                x = 0.15f;
-            }
-            else if (x == 0.15f)
-            {
-                x = 0.21f;
-            }
-            else if (x == 0.21f)
-            {
-                x = 0.27f;
-            }
-            else if (x == 0.27f)
-            {
-                x = -0.27f;
+                field.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX1, posY1);
 
-                y -= 0.06f;
+                fields.Add(field.GetComponent<Image>());
+
+                posX1 += space;
             }
+
+            posX1 = posX;
+            posY1 -= space;
         }
 
-        for(int i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++)
         {
             Destroy(GameObject.Find("/field(Clone)"));
         }
@@ -177,6 +140,11 @@ public class MDMPGame : MonoBehaviourPunCallbacks
         squares.Clear();
         fields.Clear();
 
+        x = (int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"];
+        y = (int)PhotonNetwork.CurrentRoom.CustomProperties["GridSize"];
+
+        grid = new int[(int)x, (int)y];
+
         time = 0;
 
         StartCoroutine(GameTime());
@@ -185,15 +153,8 @@ public class MDMPGame : MonoBehaviourPunCallbacks
 
         FindAllSquares();
 
-        player1DotCountText = player1DotCountText1;
-        player2DotCountText = player2DotCountText1;
-
-        player1DotCountText.text = PhotonNetwork.PlayerList[0].NickName + "'s dots: 25";
-        player2DotCountText.text = PhotonNetwork.PlayerList[1].NickName + "'s dots: 25";
-
-        dot = dot1;
-        red = red1;
-        turnText = turnText1;
+        player1DotCountText.text = PhotonNetwork.PlayerList[0].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P1Dots"].ToString();
+        player2DotCountText.text = PhotonNetwork.PlayerList[1].NickName + "'s dots: " + PhotonNetwork.CurrentRoom.CustomProperties["P2Dots"].ToString();
 
         if ((int)PhotonNetwork.CurrentRoom.CustomProperties["turn"] == 1)
         {
@@ -207,7 +168,7 @@ public class MDMPGame : MonoBehaviourPunCallbacks
         InstantiateFields();
     }
 
-    public static void CheckWin()
+    public void CheckWin()
     {
         FieldClickMPMD.canDoClick = false;
         int i = 0;
@@ -240,7 +201,7 @@ public class MDMPGame : MonoBehaviourPunCallbacks
 
             if (count == 4)
             {
-                instance.StartCoroutine(endMatch(lu, ru, ld, rd));
+                StartCoroutine(endMatch(lu, ru, ld, rd));
                 gameStop = true;
             }
 
@@ -252,7 +213,7 @@ public class MDMPGame : MonoBehaviourPunCallbacks
         }
     }
 
-    public static IEnumerator endMatch(int lu, int ru, int ld, int rd)
+    public IEnumerator endMatch(int lu, int ru, int ld, int rd)
     {
         FieldClickMPOD.canDoClick = false;
 
@@ -279,9 +240,9 @@ public class MDMPGame : MonoBehaviourPunCallbacks
         }
     }
 
-    public static void DeleteAll()
+    public void DeleteAll()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < x * y; i++)
         {
             Destroy(fields[i]);
         }
@@ -291,9 +252,9 @@ public class MDMPGame : MonoBehaviourPunCallbacks
     {
         int count = 0;
 
-        for (int i = 1; i < 11; i++)
+        for (int i = 1; i < x + 1; i++)
         {
-            for (int j = 1; j < 11; j++)
+            for (int j = 1; j < y + 1; j++)
             {
                 count++;
 
@@ -304,11 +265,11 @@ public class MDMPGame : MonoBehaviourPunCallbacks
 
     void FindAllSquares()
     {
-        for (int v = 2; v < 11; v++)
+        for (int v = 2; v < x + 1; v++)
         {
-            for (int i = 0; i < 10 - v + 1; i++)
+            for (int i = 0; i < x - v + 1; i++)
             {
-                for (int j = 0; j < 10 - v + 1; j++)
+                for (int j = 0; j < y - v + 1; j++)
                 {
                     int lu = grid[i, j];
                     int ru = grid[i + v - 1, j];

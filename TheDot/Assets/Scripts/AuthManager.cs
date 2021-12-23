@@ -97,6 +97,12 @@ public class AuthManager : MonoBehaviour
             menuPanel.SetActive(true);
             loginPanel.SetActive(false);
 
+            nick1 = nick;
+            rating1 = rating;
+            xp1 = xp;
+            level1 = level;
+            coins1 = coins;
+
             StartCoroutine(LoadUserData());
 
             StartCoroutine(CheckVersion());

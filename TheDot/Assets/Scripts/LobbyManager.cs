@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
@@ -58,6 +59,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Hashtable RoomCustomProps = new Hashtable();
         RoomCustomProps.Add("P1Dots", 25);
         RoomCustomProps.Add("P2Dots", 25);
+        RoomCustomProps.Add("GridSize", 10);
         RoomCustomProps.Add("turn", 1);
         RoomCustomProps.Add("clicked", null);
         roomOptions.CustomRoomProperties = RoomCustomProps;
@@ -79,5 +81,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         controlPanel.SetActive(true);
 
         PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+
+        SceneManager.LoadScene("MPChoose");
     }
 }

@@ -6,45 +6,31 @@ using UnityEngine.UI;
 
 public class ODMPGame : MonoBehaviour
 {
-    static public ODMPGame instance;
+    public Text player1DotCountText;
+    public Text player2DotCountText;
 
-    public Sprite dot1;
-    public Sprite red1;
-    public Text turnText1;
+    public Sprite dot;
+    public Sprite red;
 
-    public Text player1DotCountText1;
-    public Text player2DotCountText1;
+    public Text turnText;
 
-    public static Text player1DotCountText;
-    public static Text player2DotCountText;
-
-    public static Sprite dot;
-    public static Sprite red;
-
-    public static Text turnText;
-
-    public GameObject field;
+    public GameObject fieldObject;
     public Transform board;
 
-    public static List<Image> fields = new List<Image>();
+    public List<Image> fields = new List<Image>();
 
-    public static List<List<int>> squares = new List<List<int>>();
+    public List<List<int>> squares = new List<List<int>>();
 
-    public static List<int> sq = new List<int>();
+    public List<int> sq = new List<int>();
 
-    public static int turn;
+    public int turn;
 
-    public static int x = 10;
-    public static int y = 10;
+    public float x;
+    public float y;
 
     static float time = 0;
 
-    public static int[,] grid = new int[x, y];
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    public int[,] grid;
 
     IEnumerator GameTime()
     {
@@ -61,6 +47,11 @@ public class ODMPGame : MonoBehaviour
         squares.Clear();
         fields.Clear();
 
+        x = PlayerPrefs.GetInt("GridSize");
+        y = PlayerPrefs.GetInt("GridSize");
+
+        grid = new int[(int)x, (int)y];
+
         time = 0;
 
         StartCoroutine(GameTime());
@@ -69,76 +60,43 @@ public class ODMPGame : MonoBehaviour
 
         FindAllSquares();
 
-        player1DotCountText = player1DotCountText1;
-        player2DotCountText = player2DotCountText1;
-
-        player1DotCountText.text = "Player1's dots: 25";
-        player2DotCountText.text = "Player2's dots: 25";
-
-        dot = dot1;
-        red = red1;
-        turnText = turnText1;
+        player1DotCountText.text = "Player1's dots: " + Mathf.RoundToInt(x * y / 4).ToString();
+        player2DotCountText.text = "Player2's dots: " + Mathf.RoundToInt(x * y / 4).ToString();
 
         turn = 1;
 
         turnText.text = "Turn: Player 1";
 
-        float x = -0.27f;
-        float y = 0.27f;
+        float space = 0.06f;
 
-        for (int i = 0; i < 100; i++)
+        float posX = -0.27f + 0.03f * (10 - x) ;
+        float posY = 0.27f - 0.03f * (10 - y);
+
+        float posX1 = posX;
+        float posY1 = posY;
+
+        for (float row = 0; row < x; row++)
         {
-            GameObject obj = Instantiate(field, new Vector3(0, 0, 0), Quaternion.identity, board);
-            obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+            for (float col = 0; col < y; col++)
+            {
+                GameObject field = new GameObject();
+                Destroy(field);
 
-            fields.Add(obj.GetComponent<Image>());
+                field = Instantiate(fieldObject, transform);
 
-            if (x == -0.27f)
-            {
-                x = -0.21f;
-            }
-            else if (x == -0.21f)
-            {
-                x = -0.15f;
-            }
-            else if (x == -0.15f)
-            {
-                x = -0.09f;
-            }
-            else if (x == -0.09f)
-            {
-                x = -0.03f;
-            }
-            else if (x == -0.03f)
-            {
-                x = 0.03f;
-            }
-            else if (x == 0.03f)
-            {
-                x = 0.09f;
-            }
-            else if (x == 0.09f)
-            {
-                x = 0.15f;
-            }
-            else if (x == 0.15f)
-            {
-                x = 0.21f;
-            }
-            else if (x == 0.21f)
-            {
-                x = 0.27f;
-            }
-            else if (x == 0.27f)
-            {
-                x = -0.27f;
+                field.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX1, posY1);
 
-                y -= 0.06f;
+                fields.Add(field.GetComponent<Image>());
+
+                posX1 += space;
             }
+
+            posX1 = posX;
+            posY1 -= space;
         }
     }
 
-    public static void CheckWin()
+    public void CheckWin()
     {
         int i = 0;
 
@@ -170,7 +128,7 @@ public class ODMPGame : MonoBehaviour
 
             if (count == 4)
             {
-                instance.StartCoroutine(endMatch(lu, ru, ld, rd));
+                StartCoroutine(endMatch(lu, ru, ld, rd));
             }
             else
             {
@@ -190,7 +148,7 @@ public class ODMPGame : MonoBehaviour
         }
     }
 
-    public static IEnumerator endMatch(int lu, int ru, int ld, int rd)
+    public IEnumerator endMatch(int lu, int ru, int ld, int rd)
     {
         FieldClickMPOD.canDoClick = false;
 
@@ -217,9 +175,9 @@ public class ODMPGame : MonoBehaviour
         }
     }
 
-    public static void DeleteAll()
+    public void DeleteAll()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < x * y; i++)
         {
             Destroy(fields[i]);
         }
@@ -229,9 +187,9 @@ public class ODMPGame : MonoBehaviour
     {
         int count = 0;
 
-        for (int i = 1; i < 11; i++)
+        for (int i = 1; i < x + 1; i++)
         {
-            for (int j = 1; j < 11; j++)
+            for (int j = 1; j < y + 1; j++)
             {
                 count++;
 
@@ -242,11 +200,11 @@ public class ODMPGame : MonoBehaviour
 
     void FindAllSquares()
     {
-        for (int v = 2; v < 11; v++)
+        for (int v = 2; v < x + 1; v++)
         {
-            for (int i = 0; i < 10 - v + 1; i++)
+            for (int i = 0; i < x - v + 1; i++)
             {
-                for (int j = 0; j < 10 - v + 1; j++)
+                for (int j = 0; j < y - v + 1; j++)
                 {
                     int lu = grid[i, j];
                     int ru = grid[i + v - 1, j];
